@@ -62,3 +62,32 @@ A 2D array where entry (i, j) is 1 if there’s an edge from vertex  i  to  j, a
 -   Use Cases:
     -   Dense graphs (where  $m \approx n^2$ ).
     -   Applications requiring frequent edge-existence checks (e.g., small graphs in dynamic programming).
+
+## Random Contraction Algorithm
+&rarr; Karger's Random Contraction Algorithm is a <u>randomized Monte Carlo method</u> to find the **minimum cut** in an <u>undirected graph</u>.
+### Algorithm Steps
+1.  **Contraction**:
+    -   Randomly select an edge  (u, v).
+    -   Merge u and v into a single "supernode."
+    -   Redirect all edges incident to u or v to the supernode.
+    -   Remove self-loops (edges from the supernode to itself).
+2.  Repeat contractions until only  **two supernodes**  remain. The edges between them form a cut.
+3.  Iterate  the entire process multiple times and return the smallest cut found.
+### Probability of Success
+&rarr; Probability that an edge crossing the min cut (A, B) is chosen in first iteration,
+P[$S_1$] = k / m ; k &rarr; number of crossing edges.
+&rarr; degree of each vertex v &geq; k
+(**Degree of a vertex** is the number of edges incident to it.)
+&rarr; &Sigma; degree(v) = 2m &geq; kn
+&rarr; P[$S_1$] &leq; 2 / n
+&rarr; P[output is min cut (A, B)] = P[never contracts a crossing edge in min cut]<br>=P[$S_1' \cap S_2'\cap S_3'....\cap S_{n -2}'$ ]
+&rarr; P[$S_1' \cap S_2'$] = P[$S_2'/S_1'$] &middot; P[$S_1'$] 
+&rarr; P[$S_2'/S_1'$] &leq; 1 - 2 / (n - 1)
+&rarr; Putting all together we get P[success] &geq; $\frac{1}{n^2}$
+Running time of Karger's Algorithm is polynomial in n and m, but slow $\Omega(n^2m)$.
+We can get speed ups to roughly $\Omicron(n^2)$.
+## Number of Minimum Cuts
+&rarr; A tree with n vertices has n - 1 min cuts.
+&rarr; Largest number of min cuts a graph with n vertices may have = $^nC_2$
+&rarr; Minimum number of min cuts for a graph in general = n - 1
+&rarr; Minimum number of min cuts for a cycled graph = $^nC_2$
