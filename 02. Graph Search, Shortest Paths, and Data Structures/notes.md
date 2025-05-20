@@ -119,3 +119,48 @@ This representation allows us to analyze the structure of the World Wide Web as 
 1.  **Temporal aspects**: How the web graph evolves over time.
 2.  **Informational aspects**: How new information propagates throughout the Web, blogosphere, or Twitter.
 3.  **Finer-grained structure**: Defining and computing communities in information and social networks.
+
+## Dijkstra's Algorithm
+&rarr; Single source, shortest path problem in a directed graph with non negative edge length.
+-   **Input**:
+    -   Directed graph G = (V, E) with non-negative edge lengths $l_e$.
+    -   Source vertex s.
+-   **Output**:
+    -   Shortest path distances L(v) from s to every v &isin; V.
+
+|Approach|Works for|Efficiency|Limitation|
+|--|--|--|--|
+| BFS | $l_e$ = 1 &forall; e |Linear|Only for unit edge lengths|
+|Edge Expansion| Any $l_e$|Inefficient|Graph Size Explodes (Blows Up)|
+|Dijkstra's Algorithm| Any non negative $l_e$|Efficient|Requires non-negative edge lengths|
+---
+**Key Steps**
+1.  **Initialization**:
+    -   Set X = {s} (processed vertices).
+    -   Initialize A[s] = 0 (shortest path distance to s).
+    -   For v &ne; s, A[v] = +&infin;.
+2.  **Main Loop**:
+    -   **Greedy Selection**: Repeatedly pick the edge (v, w) where v &isin; X,  w &notin; X, minimizing A[v] + $l_{vw}$.
+    -   **Add w to X** and set A[w] = A[v] + $l_{vw}$.
+
+<u> Why can't we apply Dijkstra's to negative edge lengths directed graph by adding a large constant each length to make them non negative? </u>
+&rArr; This approach  **does not preserve shortest paths**!
+-   Adding a constant to every edge changes the relative costs of different paths, especially those of different lengths (i.e., different numbers of edges).
+-   For example, a path with more edges will have a larger increase in its total length than a path with fewer edges, possibly making a previously shorter path now longer, and vice versa.
+### Heap Operations
+|Operation|Description|Time Complexity|
+|--|--|--|
+| Insert | Add element at last leaf, bubble up to restore heap property |O(logn)|
+|Extract - Min|Remove root, move last leaf to root, bubble down to restore heap|O(logn)|
+|Delete (middle)|Remove arbitrary node, bubble up/down as needed|O(logn)|
+### **Dijkstra's Two Invariants**
+1.  **Heap Contains Only Unprocessed Vertices**
+    -   _Statement_: The priority queue (heap) contains exactly the vertices in V−X, where  X is the set of processed vertices.
+    -   _Why?_  This ensures we only consider unprocessed nodes for future exploration. Once a node enters X, its shortest path is finalized, so it’s removed from the heap.
+2.  **Key Values Represent Optimal Greedy Scores**
+    -   _Statement_: For every unprocessed vertex v, the heap's key for v is the smallest possible distance from the source s via edges from X. Formally:
+        Key(v) = min⁡{A[u] + $l_{uv}$ : (u, v) &isin; E, u &isin; X}
+    -   _Why?_  This guarantees the algorithm always selects the next vertex with the  _shortest known path_  from s, ensuring no better path exists through already-processed nodes.
+**Running Time Analysis**
+&rarr; Number of heap operations = O(n + m) &ap; O(m) (Weakly connected graph).
+&rarr; Running time = O(m logn)
