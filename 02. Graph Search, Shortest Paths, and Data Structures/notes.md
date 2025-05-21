@@ -164,3 +164,53 @@ This representation allows us to analyze the structure of the World Wide Web as 
 **Running Time Analysis**
 &rarr; Number of heap operations = O(n + m) &ap; O(m) (Weakly connected graph).
 &rarr; Running time = O(m logn)
+
+## Heap and Their Applications
+### Heap : Supported Operations
+* A container for objects having keys (Ex : Employer records, network edges, events etc).
+* **Insert** : Add a new object to heap
+	* Running Time : O(log(n))
+* **Extract-Min** : Remove an object in heap with a minimum key value.
+	* Running Time : O(log(n))
+* **Heapify** : Initialize a heap in linear time (n batched inserts in O(n) time).
+* **Delete** : Delete arbitrary object in the middle of the heap in O(log(n)) time
+### Implementation Details
+Conceptually, a heap is structured as a tree that is:
+-   Rooted
+-   Binary
+-   As complete as possible
+The  **Heap Property**  requires that at every node x, Key(x) ≤ all keys of x's children (a min heap). This ensures that the object with the minimum key is always at the root.
+
+**Array Implementation**
+Heaps are typically implemented using arrays with the following relationships:
+-   Parent(i) = floor(i / 2)
+-   Children of i are 2i and 2i+1
+
+**Key Procedures**
+* **Bubble-Up**  (for Insert):
+	1.  Place the new key k at the end of the last level.
+	2.  Compare with parent and swap if necessary.
+	3.  Continue until heap property is satisfied.
+
+* **Bubble-Down**  (for Extract-Min):
+	1.  Delete the root
+	2.  Move the last leaf to become the new root
+	3.  Compare with smaller child and swap if necessary
+	4.  Continue until heap property is satisfied (always swap with smaller child)
+
+### Applications
+Heaps enable efficient solutions to various problems:
+1.  **Sorting**
+    -   HeapSort: Insert all n elements into a heap, then repeatedly Extract-Min.
+    -   Running time: O(n log n).
+2.  **Event Management / Priority Queue**
+    -   Objects are event records with scheduled actions.
+    -   Key is the time the event is scheduled to occur.
+    -   Extract-Min yields the next scheduled event.
+3.  **Median Maintenance**
+    -   Maintain two heaps: H-Low (max-heap) and H-High (min-heap).
+    -   Keep i/2 smallest elements in H-Low and rest in H-High.
+    -   Can compute the median in O(log(i)) time at each step i.
+4.  **Speeding Up Dijkstra's Algorithm**
+    -   Naive implementation: O(nm) runtime.
+    -   With heaps: O(m log n).
