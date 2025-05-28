@@ -243,3 +243,13 @@ For any node x:
 -   All keys in the right subtree > x
 
 Height (Longest Root Leaf Path) of a tree  can be anywhere between $\log_2n$ and n.
+
+## Red Black Trees
+&rarr; Red Black Trees are self balancing binary search trees making sure that the height of the tree is always O(log n).
+**Core Properties of Red-Black Trees**
+1.  **Color Property**: Every node is either red or black.
+2.  **Root Property**: The root node is always black.
+3.  **Leaf Property**: All leaf nodes (NIL nodes) are black.
+4.  **Red Property**: If a node is red, then both its children must be black (no two consecutive rows have red nodes).
+5.  **Black Height Property**: Every path from any node to its descendant leaves contains the same number of black nodes.
+
