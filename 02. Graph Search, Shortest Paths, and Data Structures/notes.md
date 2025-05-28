@@ -214,3 +214,32 @@ Heaps enable efficient solutions to various problems:
 4.  **Speeding Up Dijkstra's Algorithm**
     -   Naive implementation: O(nm) runtime.
     -   With heaps: O(m log n).
+
+# Balanced Search Trees
+Balanced search trees are designed to be "like sorted array + fast (logarithmic) inserts + deletes!"
+**Search Operations:**
+-   **Search**: O(log n) - Find if a key exists in the tree.
+-   **Select**: O(log n) - Find the i-th order statistic (i-th smallest element).
+-   **Min/Max**: O(log n) - Find minimum or maximum elements.
+-   **Pred/Succ**: O(log n) - Find predecessor or successor of a given key.
+-   **Rank**: O(log n) - Determine how many elements are ≤ a given value.
+
+**Output Operation:**
+-   **Output in sorted order**: O(n) - Traverse and output all elements in sorted order.
+
+**Dynamic Operations:**
+-   **Insert**: O(log n) - Add a new element while maintaining balance.
+-   **Delete**: O(log n) - Remove an element while maintaining balance.
+
+### Basic Node Structure
+-   **Exactly one key per node**  - no duplicates allowed in the basic version.
+-   **Left child pointer**  - points to the left subtree.
+-   **Right child pointer**  - points to the right subtree.
+-   **Parent pointer**  - points back to the parent node.
+
+**Search Tree Property** : 
+For any node x:
+-   All keys in the left subtree < x
+-   All keys in the right subtree > x
+
+Height (Longest Root Leaf Path) of a tree  can be anywhere between $\log_2n$ and n.
