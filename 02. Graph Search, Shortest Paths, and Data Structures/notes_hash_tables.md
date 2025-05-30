@@ -85,3 +85,15 @@ When distinct elements x, y ∈ U satisfy h(x) = h(y), we have a collision (Two 
 -   For any fixed data set S, only a small fraction of functions in H perform poorly on S.
 -   Random selection makes bad performance unlikely.
 ---
+## Bloom Filters
+&rarr; Bloom filters represent an elegant extension of hash table concepts that trades perfect accuracy for remarkable space efficiency.
+**Key Characteristics**:
+-   **No false negatives**: If a bloom filter says an element is NOT in the set, it's definitely not there.
+-   **Possible false positives**: If it says an element IS in the set, it might be wrong.
+-   **Space efficient**: Requires only about 9.6 bits per element for 1% error rate, regardless of element size.
+-   **Fast operations**: Constant time O(1) insertions and lookups.
+
+**Supported Operations**:
+-   **Insert**: Add new elements to the set.
+-   **Lookup**: Check if element might be in the set.
+-   **No deletions**: Cannot remove elements once added.
