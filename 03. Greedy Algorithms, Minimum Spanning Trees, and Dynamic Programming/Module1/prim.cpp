@@ -30,6 +30,7 @@ public:
         return adjList;
     }
 };
+// prim O(mn)
 vector<pair<int, pair<int, int>>> prim(Graph &G, int s)
 {
     unordered_set<int> X;
@@ -63,6 +64,53 @@ vector<pair<int, pair<int, int>>> prim(Graph &G, int s)
     }
     return T;
 }
+// prim Fast using Heap : O(mlog(n))
+vector<pair<int, pair<int, int>>> primFast(Graph &G, int s)
+{
+    auto g = G.getAdjList();
+    int n = g.size();
+    
+    // Priority queue for ExtractMin: {weight, {vertex, parent}}
+    priority_queue<pair<int, pair<int, int>>, 
+                   vector<pair<int, pair<int, int>>>, 
+                   greater<pair<int, pair<int, int>>>> pq;
+    
+    unordered_set<int> X;
+    vector<pair<int, pair<int, int>>> T; 
+    
+    pq.push({0, {s, -1}});  // {weight, {vertex, parent}}
+    
+    while (!pq.empty() && X.size() < n) {
+        auto current = pq.top();
+        pq.pop();
+        
+        int weight = current.first;
+        int u = current.second.first;
+        int parent = current.second.second;
+        
+        // Skip if already in MST (handles duplicate entries)
+        if (X.find(u) != X.end()) continue;
+        
+        X.insert(u);
+        
+        if (parent != -1) {
+            T.push_back({weight, {parent, u}});
+        }
+        
+        // Add all crossing edges to priority queue
+        for (auto& edge : g[u]) {
+            int v = edge.first;
+            int edgeWeight = edge.second;
+            
+            if (X.find(v) == X.end()) {  // v ∉ X
+                pq.push({edge.second, {edge.first, u}});
+            }
+        }
+    }
+    
+    return T;
+}
+
 int main()
 {
     int n = 6;
@@ -76,7 +124,7 @@ int main()
     g.addEdge(3, 5, 2);
     g.addEdge(4, 5, 1);
 
-    auto mst = prim(g, 0);
+    auto mst = primFast(g, 0);
 
     cout << "Prim's MST edges:\n";
     int totalWeight = 0;
