@@ -1,7 +1,7 @@
 /*
  * File Name    : prim.cpp
  *
- * Credit       : Course     - Graph Search, Shortest Paths, and Data Structures, Stanford University on Coursera
+ * Credit       : Course     - Greedy Algorithms, Minimum Spanning Trees, and Dynamic Programming, Stanford University on Coursera
  *                Instructor - Tim Roughgarden, Professor
  *
  * Author       : Mayank Kushwaha
