@@ -22,3 +22,33 @@
     Use memoization (top-down) or tabulation (bottom-up) to avoid redundant work.
 4.  **Reconstruct Solution (if needed):**  
     Trace back through your DP table to recover the actual choices that led to the optimal value.
+
+## Knapsack Problem
+The  **0/1 Knapsack Problem**  is a classic optimization problem with the following specification1:
+**Input:**
+-   `n`  items, each with:
+    -   Value  `vi`  (nonnegative)
+    -   Size/weight  `wi`  (nonnegative integer)
+-   Knapsack capacity  `W`  (nonnegative integer)
+
+**Output:**  
+A subset  `S ⊆ {1, 2, ..., n}`  that maximizes  `∑(i∈S) vi`  subject to the constraint  `∑(i∈S) wi ≤ W`.
+
+## Sequence Alignment (Needleman-Wunsch score):
+-   **Input:**  Two strings X = x₁...xₘ and Y = y₁...yₙ over alphabet {A,C,G,T}.
+-   **Goal:**  Find an alignment that minimizes total penalty.
+-   **Penalties:**  $\sf α_{gap}$ for gaps, $\sfα_{ab}$ for mismatching characters a and b.
+
+**Analyzing Optimal Solution Structure**
+When looking at an optimal alignment's final position, there are exactly  **3 meaningful possibilities**:
+1.  **Case 1:**  xₘ aligned with yₙ (both characters matched).
+2.  **Case 2:**  xₘ aligned with a gap (xₘ matched to gap).
+3.  **Case 3:**  yₙ aligned with a gap (yₙ matched to gap).
+
+## Optimal Binary Search Trees
+**Input:**
+-   Frequencies  `p₁, p₂, ..., pₙ`  for items  `1, 2, ..., n`.
+-   Items are given in  **sorted order**:  `1 < 2 < ... < n`.
+
+**Goal:**  
+Compute a valid binary search tree that minimizes the  **weighted average search time**.
