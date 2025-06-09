@@ -68,3 +68,23 @@ The key is to order vertices arbitrarily as V = {1, 2, ..., n} and define:
 -   **Step 5:**  O(n²) - O(1) work per u-v pair
 **Total:**  O(mn log n) - Much better than Floyd-Warshall for sparse graphs!
 
+# Polynomial Time Solvability
+&rarr; A problem is polynomial-time solvable if there is an algorithm that correctly solves it in O(n k ) time, for some constant k. (Where n = input length = # of key strokes needed to describe input).
+### Reduction
+&rarr; Problem $Π_1$ reduces to problem $Π_2$ if: given a polynomial-time subroutine for $Π_2$, can use it to solve $Π_1$ in polynomial time.
+### Completeness
+Suppose $Π_1$ reduces to $Π_2$. 
+<u>Contrapositive:</u> If $Π_1$ is not in P, then neither is $Π_2$, that is, $Π_2$ is at least as hard as $Π_1$. 
+<u>Definition:</u> Let C = a set of problems. The problem Π is C-complete if: 
+1. Π ∈ C
+2. everything in C reduces to Π. That is: Π is the hardest problem in all of C.
+
+**Traveling Salesman Problem**
+&rarr; A problem that is not solvable in polynomial time.
+**Input:** Complete undirected graph with nonnegative edge costs. 
+**Output:** A min-cost tour (i.e., a cycle that visits every vertex exactly once).
+
+&rarr; A problem is in NP if: 
+1. Solutions always have length polynomial in the input size. 
+2. Purported solutions can be verified in polynomial time.
+
