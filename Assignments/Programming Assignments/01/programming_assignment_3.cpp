@@ -92,7 +92,7 @@ int quickSort3(vector<int> &a, int l, int h)
 }
 int main()
 {
-    ifstream testcase("../test_cases/01/quicksort.txt");
+    ifstream testcase("../../test_cases/01/quicksort.txt");
     if (!testcase.is_open())
     {
         cout << "File Failed To Open";

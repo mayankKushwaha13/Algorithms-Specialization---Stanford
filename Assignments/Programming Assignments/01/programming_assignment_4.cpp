@@ -54,7 +54,7 @@ int karger(map<int, vector<int>> mpp)
 }
 int main()
 {
-    ifstream testcase("../test_cases/01/karger.txt");
+    ifstream testcase("../../test_cases/01/karger.txt");
     if (!testcase.is_open())
     {
         cout << "File could not be opened.";

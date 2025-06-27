@@ -45,7 +45,7 @@ long long sort_and_count(vector<int>& a, int l, int h) {
     return res;
 }
 int main() {
-    ifstream testcase("../test_cases/01/inversion.txt");
+    ifstream testcase("../../test_cases/01/inversion.txt");
     if(!testcase.is_open())
     {
         cout << "File failed to open" << endl;

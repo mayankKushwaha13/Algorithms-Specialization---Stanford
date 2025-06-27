@@ -82,7 +82,7 @@ string karatsuba(string s1, string s2) {
 
 }
 int main() {
-    ifstream testcase("../test_cases/01/karatsuba.txt"); //You can change the name of the file if you please.
+    ifstream testcase("../../test_cases/01/karatsuba.txt");
     if(!testcase.is_open())
     {
         cout << "File failed to open" << endl;
